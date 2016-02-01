@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Sample</string>
+
+    <string name="Feature1.Title">Awesome new feature!</string>
+    <string name="Feature1.Description">This feature is so awesome! You should really upgrade this app so that you can have this awesome feature to fill your phone with more awesome.</string>
+
+    <string name="Feature2.Title">Another cool feature!</string>
+    <string name="Feature2.Description">This feature is pretty cool, but not as awesome as feature 1. You probably want to upgrade for this as well. It\'ll bring just a bit more coolness to your otherwise hot and boring day.</string>
+
+    <string name="Feature3.Title">Some other feature</string>
+    <string name="Feature3.Description">This feature is actually quite boring, but marketing made us put it here because....you know... marketing mumbo jumbo. It\'s really not all that impressive so it\'s going third but they seem to think it\'ll bring in a lot of money or something so we were forced to slap it in here. Oh well. Hope you enjoy it anyway.</string>
+</resources>
