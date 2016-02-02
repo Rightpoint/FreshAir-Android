@@ -23,7 +23,7 @@ public class FeatureFragment extends Fragment {
     private FeatureInfo feature;
 
     public void setFeature(FeatureInfo feature) {
-        FreshAirUtils.initArguments(this);
+        Utils.initArguments(this);
         this.feature = feature;
         getArguments().putParcelable(KEY_FEATURE, feature);
     }

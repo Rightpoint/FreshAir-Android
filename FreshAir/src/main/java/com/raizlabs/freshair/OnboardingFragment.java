@@ -26,7 +26,7 @@ public class OnboardingFragment extends DialogFragment {
     private ReleaseInfo releaseInfo;
 
     public void setRelease(ReleaseInfo release) {
-        FreshAirUtils.initArguments(this);
+        Utils.initArguments(this);
         this.releaseInfo = release;
         getArguments().putParcelable(KEY_RELEASE, release);
     }

@@ -21,4 +21,12 @@
         android:layout_marginTop="24dp"
         android:text="Onboarding Popup"/>
 
+    <Button
+        android:id="@+id/activity_main_onboarding_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:text="Clear Onboarding Version"/>
+
 </LinearLayout>
