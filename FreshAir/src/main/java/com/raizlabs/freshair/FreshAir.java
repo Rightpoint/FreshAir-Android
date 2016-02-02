@@ -5,7 +5,10 @@ import android.support.v4.app.FragmentActivity;
 
 public class FreshAir {
 
+    private static ForegroundActivityTracker foregroundActivityTracker;
+
     public static void init(Context context) {
+        foregroundActivityTracker = new ForegroundActivityTracker(context);
     }
 
     public static void showUpdatePrompt() {

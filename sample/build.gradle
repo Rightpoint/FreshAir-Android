@@ -6,9 +6,9 @@ android {
 
     defaultConfig {
         applicationId "com.raizlabs.freshair.sample"
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 23
-        versionCode 1
+        versionCode 10
         versionName "1.0"
     }
     buildTypes {
