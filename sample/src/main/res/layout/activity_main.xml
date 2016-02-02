@@ -29,4 +29,20 @@
         android:layout_marginTop="8dp"
         android:text="Clear Onboarding Version"/>
 
+    <Button
+        android:id="@+id/activity_main_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:text="Update Prompt"/>
+
+    <Button
+        android:id="@+id/activity_main_forcedUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:text="Forced Update Prompt"/>
+
 </LinearLayout>

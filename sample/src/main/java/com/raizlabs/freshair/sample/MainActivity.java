@@ -16,7 +16,7 @@ public class MainActivity extends FragmentActivity {
         findViewById(R.id.activity_main_onboarding).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FreshAir.showOnboarding(MainActivity.this, SampleApplication.RELEASE_INFO);
+                FreshAir.showOnboarding(MainActivity.this);
             }
         });
 
@@ -24,6 +24,20 @@ public class MainActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 FreshAir.clearOnboardingVersion(MainActivity.this);
+            }
+        });
+
+        findViewById(R.id.activity_main_update).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FreshAir.showUpdatePrompt(false);
+            }
+        });
+
+        findViewById(R.id.activity_main_forcedUpdate).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FreshAir.showUpdatePrompt(true);
             }
         });
     }

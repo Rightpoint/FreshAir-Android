@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">FreshAir</string>
+
+    <string name="UpdatePrompt.Title.Default">Update Available</string>
+    <string name="UpdatePrompt.Description.Default">There is an update available on Google Play. Would you like to update now?</string>
+
+    <string name="UpdatePrompt.ForcedTitle.Default">Update Available</string>
+    <string name="UpdatePrompt.ForcedDescription.Default">You must update to continue using this app. Would you like to update now?</string>
+
+    <string name="UpdatePrompt.Accept.Default">Update</string>
+    <string name="UpdatePrompt.Decline.Default">Later</string>
 </resources>

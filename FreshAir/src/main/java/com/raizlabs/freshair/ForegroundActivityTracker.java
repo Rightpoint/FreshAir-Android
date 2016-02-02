@@ -9,11 +9,30 @@ import java.lang.ref.WeakReference;
 
 class ForegroundActivityTracker {
 
+    public interface ActivityAction {
+        public void execute(Activity activity);
+    }
+
     private WeakReference<Activity> foregroundActivity;
+    private ActivityAction activityAction;
+    private boolean isActionPersistent;
 
     public ForegroundActivityTracker(Context context) {
         ((Application)context.getApplicationContext()).registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
         foregroundActivity = new WeakReference<>(null);
+    }
+
+    void postToForegroundActivity(ActivityAction action, boolean persistent) {
+        synchronized (this) {
+            Activity foregroundActivity = getForegroundActivity();
+            if (foregroundActivity != null) {
+                action.execute(foregroundActivity);
+            } else {
+                activityAction = action;
+            }
+
+            isActionPersistent = persistent;
+        }
     }
 
     Activity getForegroundActivity() {
@@ -29,6 +48,13 @@ class ForegroundActivityTracker {
     private void setForegroundActivity(Activity activity) {
         synchronized (this) {
             foregroundActivity = new WeakReference<>(activity);
+
+            if (activityAction != null) {
+                activityAction.execute(activity);
+                if (!isActionPersistent) {
+                    activityAction = null;
+                }
+            }
         }
     }
 
