@@ -87,7 +87,6 @@ class ForegroundActivityTracker {
         public void onActivityResumed(Activity activity) {
             FreshAirLog.v("Resumed: " + activity);
             setForegroundActivity(activity);
-            FreshAirLog.v("Foreground: " + getForegroundActivity());
         }
 
         @Override
@@ -107,7 +106,7 @@ class ForegroundActivityTracker {
 
         @Override
         public void onActivityDestroyed(Activity activity) {
-            
+
         }
     };
 }
