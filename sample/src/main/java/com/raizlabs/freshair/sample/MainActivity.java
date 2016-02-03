@@ -24,21 +24,28 @@ public class MainActivity extends FragmentActivity {
         findViewById(R.id.activity_main_onboarding_clear).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FreshAir.clearOnboardingVersion(MainActivity.this);
+                FreshAir.clearOnboardingVersion();
             }
         });
 
         findViewById(R.id.activity_main_update).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FreshAir.showUpdatePrompt(false);
+                FreshAir.showUpdatePrompt(50, false);
             }
         });
 
         findViewById(R.id.activity_main_forcedUpdate).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FreshAir.showUpdatePrompt(true);
+                FreshAir.showUpdatePrompt(50, true);
+            }
+        });
+
+        findViewById(R.id.activity_main_update_clear).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FreshAir.clearUpdatePromptVersion();
             }
         });
 

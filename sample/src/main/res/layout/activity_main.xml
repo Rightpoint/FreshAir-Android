@@ -46,6 +46,14 @@
         android:text="Forced Update Prompt"/>
 
     <Button
+        android:id="@+id/activity_main_update_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:text="Clear Update Version"/>
+
+    <Button
         android:id="@+id/activity_main_delayedStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

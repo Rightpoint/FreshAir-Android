@@ -35,7 +35,5 @@ public class SampleApplication extends Application {
                                 .setDescriptionResource(R.string.Feature3_Description)
                 )
                 .setVersionCode(1));
-
-        FreshAir.showUpdatePrompt(false);
     }
 }
