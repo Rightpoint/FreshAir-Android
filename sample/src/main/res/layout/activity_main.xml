@@ -45,4 +45,12 @@
         android:layout_marginTop="8dp"
         android:text="Forced Update Prompt"/>
 
+    <Button
+        android:id="@+id/activity_main_delayedStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:text="Delayed Start Activity"/>
+
 </LinearLayout>

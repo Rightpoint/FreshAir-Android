@@ -18,19 +18,25 @@ class ForegroundActivityTracker {
     private boolean isActionPersistent;
 
     public ForegroundActivityTracker(Context context) {
-        ((Application)context.getApplicationContext()).registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
+        ((Application) context.getApplicationContext()).registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
         foregroundActivity = new WeakReference<>(null);
     }
 
     void postToForegroundActivity(ActivityAction action, boolean persistent) {
         synchronized (this) {
             Activity foregroundActivity = getForegroundActivity();
+
             if (foregroundActivity != null) {
                 action.execute(foregroundActivity);
             } else {
+                // If we couldn't execute the action, save it.
                 activityAction = action;
             }
 
+            // If we need to keep performing this action, save it.
+            if (persistent) {
+                activityAction = action;
+            }
             isActionPersistent = persistent;
         }
     }

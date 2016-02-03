@@ -1,5 +1,6 @@
 package com.raizlabs.freshair.sample;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
@@ -38,6 +39,18 @@ public class MainActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 FreshAir.showUpdatePrompt(true);
+            }
+        });
+
+        findViewById(R.id.activity_main_delayedStart).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                v.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        v.getContext().startActivity(new Intent(v.getContext(), MainActivity.class));
+                    }
+                }, 3000);
             }
         });
     }
