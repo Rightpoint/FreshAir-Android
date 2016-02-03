@@ -10,7 +10,7 @@ import java.lang.ref.WeakReference;
 class ForegroundActivityTracker {
 
     public interface ActivityAction {
-        public void execute(Activity activity);
+        void execute(Activity activity);
     }
 
     private WeakReference<Activity> foregroundActivity;
@@ -75,31 +75,29 @@ class ForegroundActivityTracker {
     private Application.ActivityLifecycleCallbacks activityLifecycleCallbacks = new Application.ActivityLifecycleCallbacks() {
         @Override
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-            FreshAirLog.w("Created: " + activity);
+
         }
 
         @Override
         public void onActivityStarted(Activity activity) {
-            FreshAirLog.w("Started: " + activity);
+
         }
 
         @Override
         public void onActivityResumed(Activity activity) {
-            FreshAirLog.w("Resumed: " + activity);
+            FreshAirLog.v("Resumed: " + activity);
             setForegroundActivity(activity);
-            FreshAirLog.i("Foreground: " + getForegroundActivity());
+            FreshAirLog.v("Foreground: " + getForegroundActivity());
         }
 
         @Override
         public void onActivityPaused(Activity activity) {
-            FreshAirLog.w("Paused: " + activity);
             unforegroundActivity(activity);
-            FreshAirLog.i("Foreground: " + getForegroundActivity());
         }
 
         @Override
         public void onActivityStopped(Activity activity) {
-            FreshAirLog.w("Stopped: " + activity);
+
         }
 
         @Override
@@ -109,7 +107,7 @@ class ForegroundActivityTracker {
 
         @Override
         public void onActivityDestroyed(Activity activity) {
-            FreshAirLog.w("Destroyed: " + activity);
+            
         }
     };
 }
