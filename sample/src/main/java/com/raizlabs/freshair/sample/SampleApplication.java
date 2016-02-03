@@ -13,7 +13,7 @@ public class SampleApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        FreshAir.init(this);
+        FreshAir.initialize(this);
         FreshAirLog.setLogLevel(FreshAirLog.LogLevel.ALL);
         FreshAir.setReleaseInfo(new ReleaseInfo.Builder()
                 .addFeature(

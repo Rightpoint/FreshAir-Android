@@ -39,7 +39,6 @@ public class OnboardingFragment extends DialogFragment {
         return releaseInfo;
     }
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
