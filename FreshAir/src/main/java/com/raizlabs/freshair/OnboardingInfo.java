@@ -8,12 +8,12 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-public interface ReleaseInfo extends Parcelable {
+public interface OnboardingInfo extends Parcelable {
 
     int getVersionCode();
     List<FeatureInfo> getFeatures();
 
-    class Builder implements ReleaseInfo {
+    class Builder implements OnboardingInfo {
 
         private int versionCode;
         private List<FeatureInfo> features;

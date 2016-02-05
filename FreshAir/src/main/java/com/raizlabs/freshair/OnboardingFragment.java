@@ -15,28 +15,28 @@ import java.util.List;
 
 public class OnboardingFragment extends DialogFragment {
 
-    private static final String KEY_RELEASE = "release";
+    private static final String KEY_ONBOARDING = "onboardingInfo";
 
-    public static OnboardingFragment newInstance(ReleaseInfo releaseInfo) {
+    public static OnboardingFragment newInstance(OnboardingInfo onboardingInfo) {
         OnboardingFragment fragment = new OnboardingFragment();
-        fragment.setRelease(releaseInfo);
+        fragment.setOnboardingInfo(onboardingInfo);
         return fragment;
     }
 
-    private ReleaseInfo releaseInfo;
+    private OnboardingInfo onboardingInfo;
 
-    public void setRelease(ReleaseInfo release) {
+    public void setOnboardingInfo(OnboardingInfo release) {
         Utils.initArguments(this);
-        this.releaseInfo = release;
-        getArguments().putParcelable(KEY_RELEASE, release);
+        this.onboardingInfo = release;
+        getArguments().putParcelable(KEY_ONBOARDING, release);
     }
 
-    protected ReleaseInfo getRelease() {
-        if (releaseInfo == null) {
-            releaseInfo = getArguments().getParcelable(KEY_RELEASE);
+    protected OnboardingInfo getRelease() {
+        if (onboardingInfo == null) {
+            onboardingInfo = getArguments().getParcelable(KEY_ONBOARDING);
         }
 
-        return releaseInfo;
+        return onboardingInfo;
     }
 
     @Nullable
@@ -57,8 +57,8 @@ public class OnboardingFragment extends DialogFragment {
 
         private List<FeatureInfo> features;
 
-        public FeaturePager(FragmentManager fm, ReleaseInfo release) {
-            this(fm, release.getFeatures());
+        public FeaturePager(FragmentManager fm, OnboardingInfo onboardingInfo) {
+            this(fm, onboardingInfo.getFeatures());
         }
 
         public FeaturePager(FragmentManager fm, List<FeatureInfo> features) {
