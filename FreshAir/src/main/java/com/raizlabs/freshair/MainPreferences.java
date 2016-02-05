@@ -9,6 +9,7 @@ public class MainPreferences {
 
     private static final String KEY_ONBOARDING_PROMPT_VERSION = "LastOnboardingPromptVersionCode";
     private static final String KEY_UPDATE_PROMPT_VERSION = "LastUpdatePromptVersionCode";
+    private static final String KEY_FORCED_UPDATE_VERSION = "ForcedUpdateVersionCode";
 
     private SharedPreferences preferences;
 
@@ -42,5 +43,19 @@ public class MainPreferences {
 
     public void clearLastUpdatePromptVersion() {
         preferences.edit().remove(KEY_UPDATE_PROMPT_VERSION).apply();
+    }
+
+    public int getForcedUpdateVersion() {
+        return preferences.getInt(KEY_FORCED_UPDATE_VERSION, -1);
+    }
+
+    public void setForcedUpdateVersion(int version) {
+        if (version > getForcedUpdateVersion()) {
+            preferences.edit().putInt(KEY_FORCED_UPDATE_VERSION, version).apply();
+        }
+    }
+
+    public void clearForcedUpdateVersion() {
+        preferences.edit().remove(KEY_FORCED_UPDATE_VERSION).apply();
     }
 }

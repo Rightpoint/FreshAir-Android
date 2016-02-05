@@ -30,6 +30,11 @@ public class FreshAir {
 
         foregroundActivityTracker = new ForegroundActivityTracker(context);
         preferences = new MainPreferences(context);
+
+        final int currentVersion = Utils.getApplicationVersion(context);
+        if (currentVersion < preferences.getForcedUpdateVersion()) {
+            showUpdatePrompt(preferences.getForcedUpdateVersion(), true);
+        }
     }
 
     /**
@@ -77,6 +82,10 @@ public class FreshAir {
      */
     public static void showUpdatePrompt(final int newVersionCode, final boolean forced) {
         if (ensureInitialized()) {
+
+            if (forced) {
+                preferences.setForcedUpdateVersion(newVersionCode);
+            }
 
             final int lastVersionPrompt = preferences.getLastUpdatePromptVersion();
             final boolean hasPromptedThisVersion = lastVersionPrompt >= newVersionCode;
