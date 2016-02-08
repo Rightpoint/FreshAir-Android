@@ -1,0 +1,16 @@
+{
+	"releases": [{
+		"version": "11",
+        "minimumSystemVersion": "8"
+	}, {
+		"version": "12",
+        "minimumSystemVersion": "14"
+	}, {
+		"version": "20",
+        "minimumSystemVersion": "14"
+	}, {
+		"version": "21",
+        "minimumSystemVersion": "50"
+	}],
+    "minimumVersion": "12"
+}
