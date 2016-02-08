@@ -16,6 +16,7 @@ public class FreshAir {
 
     private static ForegroundActivityTracker foregroundActivityTracker;
 
+    private static int currentApplicationVersion;
     private static UpdatePromptInfo updatePromptInfo = new UpdatePromptInfo.Builder();
     private static OnboardingInfo onboardingInfo;
     private static MainPreferences preferences;
@@ -62,6 +63,56 @@ public class FreshAir {
         FreshAir.onboardingInfo = onboardingInfo;
     }
 
+    /**
+     * Shows the update prompt, which prompts the user to go to the Play Store and update the app. This prompt will be
+     * shown over the current foreground Activity, or the next Activity to be foregrounded if one is not yet available.
+     * Data is presented based on the prompt information set via {@link #setUpdatePrompt(UpdatePromptInfo)}.
+     * <br/><br/>
+     * The user will only be prompted once for each version. If they have already acknowledged a prompt for this
+     * version, or any higher version code than the one specified, the user will not be prompted again unless
+     * they are being forced to update.
+     * <br/><br/>
+     * If the update is set to be forced, the user will be prompted no matter the version, and this prompt will block
+     * the user from using the current Activity, and any subsequently foregrounded Activity, even if they manage to
+     * back out to previous Activities or switch tasks. This will persist across app launches (reapplied when
+     * {@link #initialize(Context)} is called), but will need to be called again if the user clears application data.
+     *
+     * @param releaseInfo A set of release info which contains information about the available releases and forced
+     *                    updates.
+     */
+    public static void showUpdatePrompt(ReleaseInfo releaseInfo) {
+        if (ensureInitialized()) {
+            int newestAvailableVersion = currentApplicationVersion;
+            for (Release release : releaseInfo.getReleases()) {
+                if (release.isApplicable()) {
+                    newestAvailableVersion = Math.max(newestAvailableVersion, release.getVersionCode());
+                }
+            }
+
+            clearForcedUpdateVersion();
+
+            // If the newest we support is less than the min, we must disable the app
+            if (newestAvailableVersion < releaseInfo.getForcedMinimumVersion()) {
+                // TODO - Disable App
+            } else {
+                if (newestAvailableVersion > currentApplicationVersion) {
+                    // Update available
+                    // Forced if the current version is less than the forced minimum
+                    final boolean forced = (currentApplicationVersion < releaseInfo.getForcedMinimumVersion());
+                    showUpdatePrompt(newestAvailableVersion, forced);
+                }
+            }
+        }
+    }
+
+    /**
+     * Clears the forced update state.
+     */
+    public static void clearForcedUpdateVersion() {
+        if (ensureInitialized()) {
+            preferences.clearForcedUpdateVersion();
+        }
+    }
     /**
      * Shows the update prompt, which prompts the user to go to the Play Store and update the app. This prompt will be
      * shown over the current foreground Activity, or the next Activity to be foregrounded if one is not yet available.

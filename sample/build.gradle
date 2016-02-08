@@ -8,7 +8,7 @@ android {
         applicationId "com.raizlabs.freshair.sample"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 10
+        versionCode 15
         versionName "1.0"
     }
     buildTypes {

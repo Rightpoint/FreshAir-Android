@@ -50,9 +50,7 @@ public class MainPreferences {
     }
 
     public void setForcedUpdateVersion(int version) {
-        if (version > getForcedUpdateVersion()) {
-            preferences.edit().putInt(KEY_FORCED_UPDATE_VERSION, version).apply();
-        }
+        preferences.edit().putInt(KEY_FORCED_UPDATE_VERSION, version).apply();
     }
 
     public void clearForcedUpdateVersion() {
