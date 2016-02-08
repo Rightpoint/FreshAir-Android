@@ -32,9 +32,13 @@ public class FreshAir {
         foregroundActivityTracker = new ForegroundActivityTracker(context);
         preferences = new MainPreferences(context);
 
-        final int currentVersion = Utils.getApplicationVersion(context);
-        if (currentVersion < preferences.getForcedUpdateVersion()) {
-            showUpdatePrompt(preferences.getForcedUpdateVersion(), true);
+        if (preferences.isAppDisabled()) {
+            disableApp();
+        } else {
+            currentApplicationVersion = Utils.getApplicationVersion(context);
+            if (currentApplicationVersion < preferences.getForcedUpdateVersion()) {
+                showUpdatePrompt(preferences.getForcedUpdateVersion(), true);
+            }
         }
     }
 
@@ -90,10 +94,11 @@ public class FreshAir {
             }
 
             clearForcedUpdateVersion();
+            clearAppDisabled();
 
             // If the newest we support is less than the min, we must disable the app
             if (newestAvailableVersion < releaseInfo.getForcedMinimumVersion()) {
-                // TODO - Disable App
+                disableApp();
             } else {
                 if (newestAvailableVersion > currentApplicationVersion) {
                     // Update available
@@ -113,6 +118,40 @@ public class FreshAir {
             preferences.clearForcedUpdateVersion();
         }
     }
+
+    /**
+     * Clears the app disabled state.
+     */
+    public static void clearAppDisabled() {
+        if (ensureInitialized()) {
+            preferences.clearAppDisabled();
+        }
+    }
+
+    /**
+     * Disables the app, preventing it from being used. This persists across app launches until
+     * {@link #clearAppDisabled()} is called, or {@link ReleaseInfo} is processed which allows it again.
+     */
+    public static void disableApp() {
+        if (ensureInitialized()) {
+            preferences.setAppDisabled();
+
+            final UpdatePromptInfo promptInfo = updatePromptInfo;
+
+            foregroundActivityTracker.postToForegroundActivity(new ForegroundActivityTracker.ActivityAction() {
+                @Override
+                public void execute(Activity activity) {
+                   final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity)
+                           .setTitle(promptInfo.getDisabledTitle(activity))
+                           .setMessage(promptInfo.getDisabledDescription(activity))
+                           .setCancelable(false);
+
+                    dialogBuilder.show();
+                }
+            }, true);
+        }
+    }
+
     /**
      * Shows the update prompt, which prompts the user to go to the Play Store and update the app. This prompt will be
      * shown over the current foreground Activity, or the next Activity to be foregrounded if one is not yet available.

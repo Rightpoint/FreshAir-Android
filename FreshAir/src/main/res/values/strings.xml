@@ -7,6 +7,9 @@
     <string name="UpdatePrompt.ForcedTitle.Default">Update Available</string>
     <string name="UpdatePrompt.ForcedDescription.Default">You must update to continue using this app. Would you like to update now?</string>
 
+    <string name="UpdatePrompt.DisabledTitle.Default">App Disabled</string>
+    <string name="UpdatePrompt.DisabledDescription.Default">This app is no longer supported on this device. Try upgrading your Android OS version.</string>
+
     <string name="UpdatePrompt.Accept.Default">Update</string>
     <string name="UpdatePrompt.Decline.Default">Later</string>
 </resources>

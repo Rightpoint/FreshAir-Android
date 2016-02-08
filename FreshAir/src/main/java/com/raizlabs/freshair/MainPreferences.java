@@ -10,6 +10,7 @@ public class MainPreferences {
     private static final String KEY_ONBOARDING_PROMPT_VERSION = "LastOnboardingPromptVersionCode";
     private static final String KEY_UPDATE_PROMPT_VERSION = "LastUpdatePromptVersionCode";
     private static final String KEY_FORCED_UPDATE_VERSION = "ForcedUpdateVersionCode";
+    private static final String KEY_APP_DISABLED = "AppIsDisabled";
 
     private SharedPreferences preferences;
 
@@ -55,5 +56,17 @@ public class MainPreferences {
 
     public void clearForcedUpdateVersion() {
         preferences.edit().remove(KEY_FORCED_UPDATE_VERSION).apply();
+    }
+
+    public boolean isAppDisabled() {
+        return preferences.getBoolean(KEY_APP_DISABLED, false);
+    }
+
+    public void setAppDisabled() {
+        preferences.edit().putBoolean(KEY_APP_DISABLED, true).apply();
+    }
+
+    public void clearAppDisabled() {
+        preferences.edit().remove(KEY_APP_DISABLED).apply();
     }
 }
