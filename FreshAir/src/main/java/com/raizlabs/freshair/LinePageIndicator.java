@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.View;
 
-public class LinePageIndicator extends View {
+class LinePageIndicator extends View {
 
     private static final int DEFAULT_UNSELECTED_COLOR = Color.argb(50, 120, 120, 120);
     private static final int DEFAULT_SELECTED_COLOR = Color.argb(140, 0, 0, 0);

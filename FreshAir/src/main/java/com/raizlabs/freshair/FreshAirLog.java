@@ -4,7 +4,7 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.util.Log;
 
-public class FreshAirLog {
+class FreshAirLog {
     public static final String LOG_TAG = "FreshAir";
 
     private static int logFlags = LogLevel.WARNINGS | LogLevel.ERRORS;

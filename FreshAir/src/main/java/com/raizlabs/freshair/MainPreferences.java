@@ -3,7 +3,7 @@ package com.raizlabs.freshair;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class MainPreferences {
+class MainPreferences {
 
     private static final String PREFS_NAME = "FreshAir:Main";
 
