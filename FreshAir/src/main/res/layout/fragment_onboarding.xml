@@ -9,4 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/fragment_onboarding_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#888888"
+        android:textColor="#FFFFFF"
+        android:text="@string/Action.Done"/>
+
 </LinearLayout>
