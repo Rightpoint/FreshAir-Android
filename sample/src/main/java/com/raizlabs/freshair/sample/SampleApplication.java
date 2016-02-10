@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.raizlabs.freshair.FeatureInfo;
 import com.raizlabs.freshair.FreshAir;
-import com.raizlabs.freshair.FreshAirLog;
+import com.raizlabs.freshair.LogLevel;
 import com.raizlabs.freshair.OnboardingInfo;
 
 public class SampleApplication extends Application {
@@ -14,7 +14,7 @@ public class SampleApplication extends Application {
         super.onCreate();
 
         FreshAir.initialize(this);
-        FreshAirLog.setLogLevel(FreshAirLog.LogLevel.ALL);
+        FreshAir.setLogLevel(LogLevel.ALL);
         FreshAir.setOnboardingInfo(new OnboardingInfo.Builder()
                 .addFeature(
                         new FeatureInfo.Builder()

@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 public class FreshAir {
 
@@ -336,6 +337,16 @@ public class FreshAir {
             FreshAirLog.v("Clearing onboarding version history");
             preferences.clearLastOnboardingPromptVersion();
         }
+    }
+
+    /**
+     * Sets the log levels which will be logged to the Android {@link Log}.
+     *
+     * @param logLevel A bitmask of the desired levels, using values defined in
+     *                 {@link LogLevel}.
+     */
+    public static void setLogLevel(int logLevel) {
+        FreshAirLog.setLogLevel(logLevel);
     }
 
     /**

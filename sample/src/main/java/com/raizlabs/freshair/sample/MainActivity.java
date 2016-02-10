@@ -3,10 +3,10 @@ package com.raizlabs.freshair.sample;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
 
 import com.raizlabs.freshair.FreshAir;
-import com.raizlabs.freshair.FreshAirLog;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -81,7 +81,7 @@ public class MainActivity extends FragmentActivity {
                 sb.append(line + "\n");
             }
         } catch (IOException e) {
-            FreshAirLog.e(MainActivity.class.getSimpleName(), "Error reading stream", e);
+            Log.e(MainActivity.class.getSimpleName(), "Error reading stream", e);
         } finally {
             try {
                 in.close();
