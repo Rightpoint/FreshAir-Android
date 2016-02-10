@@ -64,6 +64,9 @@ public class OnboardingFragment extends DialogFragment {
         viewPager.setAdapter(new FeaturePager(getChildFragmentManager(), getRelease()));
         viewPager.setOffscreenPageLimit(getRelease().getFeatures().size());
 
+        LinePageIndicator pageIndicator = (LinePageIndicator) view.findViewById(R.id.fragment_onboarding_pageIndicator);
+        pageIndicator.setViewPager(viewPager);
+
         view.findViewById(R.id.fragment_onboarding_done).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

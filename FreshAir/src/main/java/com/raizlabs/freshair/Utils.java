@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -53,5 +55,18 @@ class Utils {
             }
         }
         return sb.toString();
+    }
+
+    /**
+     * Converts the given value in density-independent pixels into raw pixels
+     * with respect to the given {@link DisplayMetrics}
+     *
+     * @param dips    The value in density-independent pixels
+     * @param metrics The {@link DisplayMetrics} to use to do the conversion
+     * @return The value in raw pixels
+     */
+    public static float dipsToPixels(float dips, DisplayMetrics metrics) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dips, metrics);
     }
 }

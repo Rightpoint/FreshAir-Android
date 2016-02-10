@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LinePageIndicator">
+        <attr name="linePageIndicatorSelectedColor" format="color" />
+        <attr name="linePageIndicatorUnselectedColor" format="color" />
+        <attr name="linePageIndicatorLineThickness" format="dimension" />
+        <attr name="linePageIndicatorLineGap" format="dimension" />
+        <attr name="linePageIndicatorMaxLineWidth" format="dimension" />
+    </declare-styleable>
+</resources>
