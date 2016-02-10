@@ -1,15 +1,18 @@
 package com.raizlabs.freshair;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 
 import java.util.List;
 
@@ -39,6 +42,14 @@ public class OnboardingFragment extends DialogFragment {
         return onboardingInfo;
     }
 
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        return dialog;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,9 +62,10 @@ public class OnboardingFragment extends DialogFragment {
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.fragment_onboarding_viewPager);
         viewPager.setAdapter(new FeaturePager(getChildFragmentManager(), getRelease()));
+        viewPager.setOffscreenPageLimit(getRelease().getFeatures().size());
     }
 
-    private static class FeaturePager extends FragmentStatePagerAdapter {
+    private static class FeaturePager extends FragmentPagerAdapter {
 
         private List<FeatureInfo> features;
 

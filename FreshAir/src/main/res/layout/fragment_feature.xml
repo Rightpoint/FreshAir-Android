@@ -3,14 +3,16 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:paddingLeft="8dp"
+              android:paddingRight="8dp"
               android:orientation="vertical">
 
     <ImageView
         android:id="@+id/fragment_feature_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="24dp"
         android:scaleType="centerInside"/>
 
     <TextView
@@ -25,9 +27,9 @@
         android:id="@+id/fragment_feature_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="24dp"
         android:gravity="center"
-        android:textSize="18sp"
+        android:textSize="16sp"
         tools:text="Description Text"/>
 
 </LinearLayout>
