@@ -7,10 +7,6 @@ import android.view.View;
 
 import com.raizlabs.freshair.FreshAir;
 import com.raizlabs.freshair.FreshAirLog;
-import com.raizlabs.freshair.ReleaseInfo;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,14 +37,7 @@ public class MainActivity extends FragmentActivity {
         findViewById(R.id.activity_main_update).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputStream releaseInput = getResources().openRawResource(R.raw.release_notes);
-                String releaseString = MainActivity.readStream(releaseInput);
-                try {
-                    JSONObject releaseJson = new JSONObject(releaseString);
-                    ReleaseInfo release = ReleaseInfo.fromJson(releaseJson);
-                    FreshAir.showUpdatePrompt(release);
-                } catch (JSONException e) {
-                }
+                FreshAir.showUpdatePrompt("https://raw.githubusercontent.com/Raizlabs/FreshAir-Android/develop/Schema/release_notes.json");
 //                FreshAir.showUpdatePrompt(50, false);
             }
         });

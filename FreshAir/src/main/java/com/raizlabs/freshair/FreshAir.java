@@ -10,6 +10,8 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.FragmentActivity;
 
 public class FreshAir {
@@ -65,6 +67,27 @@ public class FreshAir {
      */
     public static void setOnboardingInfo(OnboardingInfo onboardingInfo) {
         FreshAir.onboardingInfo = onboardingInfo;
+    }
+
+    public static void showUpdatePrompt(final String url) {
+        if (ensureInitialized()) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    ReleaseInfoRequest request = new ReleaseInfoRequest(url);
+                    final ReleaseInfo info = request.run();
+
+                    if (info != null) {
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                showUpdatePrompt(info);
+                            }
+                        });
+                    }
+                }
+            }).start();
+        }
     }
 
     /**
@@ -141,10 +164,10 @@ public class FreshAir {
             foregroundActivityTracker.postToForegroundActivity(new ForegroundActivityTracker.ActivityAction() {
                 @Override
                 public void execute(Activity activity) {
-                   final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity)
-                           .setTitle(promptInfo.getDisabledTitle(activity))
-                           .setMessage(promptInfo.getDisabledDescription(activity))
-                           .setCancelable(false);
+                    final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity)
+                            .setTitle(promptInfo.getDisabledTitle(activity))
+                            .setMessage(promptInfo.getDisabledDescription(activity))
+                            .setCancelable(false);
 
                     dialogBuilder.show();
                 }
