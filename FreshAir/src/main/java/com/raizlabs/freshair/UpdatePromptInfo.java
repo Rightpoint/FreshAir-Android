@@ -4,19 +4,71 @@ import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * Interface which defines the data to show in update prompts. See
+ * {@link com.raizlabs.freshair.UpdatePromptInfo.Builder} for easy creation.
+ */
 public interface UpdatePromptInfo extends Parcelable {
+    /**
+     * Gets the title text for the regular update case.
+     * @param context A {@link Context} to use to access resources.
+     * @return The regular title.
+     */
     String getTitle(Context context);
+
+    /**
+     * Gets the description text for the regular update case.
+     * @param context  A {@link Context} to use to access resources.
+     * @return The regular description.
+     */
     String getDescription(Context context);
 
+    /**
+     * Gets the title text for forced updates.
+     * @param context A {@link Context} to use to access resources.
+     * @return The forced update title.
+     */
     String getForcedTitle(Context context);
+
+    /**
+     * Gets the description text for forced updates.
+     * @param context A {@link Context} to use to access resources.
+     * @return The forced update description.
+     */
     String getForcedDescription(Context context);
 
+    /**
+     * Gets the title text for when the app is disabled from use.
+     * @param context A {@link Context} to use to access resources.
+     * @return The title for the disabled case.
+     */
     String getDisabledTitle(Context context);
+
+    /**
+     * Gets the description text for when the app is disabled from use.
+     * @param context A {@link Context} to use to access resources.
+     * @return The description for the disabled case.
+     */
     String getDisabledDescription(Context context);
 
+    /**
+     * Gets the label for the button to accept an update.
+     * @param context A {@link Context} to use to access resources.
+     * @return The label for the button to accept an update.
+     */
     String getAcceptString(Context context);
+
+    /**
+     * Gets the label for the button to decline an update.
+     * @param context A {@link Context} to use to access resources.
+     * @return The label for the button to decline an update.
+     */
     String getDeclineString(Context context);
 
+    /**
+     * Class which helps to easily construct {@link UpdatePromptInfo}s. Starts with all defaults loaded so you can
+     * simply override the values you would like changed.
+     */
     class Builder implements UpdatePromptInfo {
         private int titleRes;
         private int descriptionRes;
@@ -30,6 +82,9 @@ public interface UpdatePromptInfo extends Parcelable {
         private int acceptRes;
         private int declineRes;
 
+        /**
+         * Constructs a new {@link com.raizlabs.freshair.UpdatePromptInfo.Builder} with all defaults loaded.
+         */
         public Builder() {
             setTitleResource(R.string.UpdatePrompt_Title_Default);
             setDescriptionResource(R.string.UpdatePrompt_Description_Default);
@@ -44,6 +99,11 @@ public interface UpdatePromptInfo extends Parcelable {
             setDeclineStringResource(R.string.UpdatePrompt_Decline_Default);
         }
 
+        /**
+         * Sets a string resource to be used as the regular update title.
+         * @param titleRes The resource ID of the string to use as the title.
+         * @return This {@link com.raizlabs.freshair.UpdatePromptInfo.Builder} for chaining method calls.
+         */
         public Builder setTitleResource(int titleRes) {
             this.titleRes = titleRes;
             return this;
@@ -54,6 +114,11 @@ public interface UpdatePromptInfo extends Parcelable {
             return context.getString(titleRes);
         }
 
+        /**
+         * Sets a string resource to be used as the regular update description.
+         * @param descriptionRes The resource ID of the string to use as the description.
+         * @return This {@link com.raizlabs.freshair.UpdatePromptInfo.Builder} for chaining method calls.
+         */
         public Builder setDescriptionResource(int descriptionRes) {
             this.descriptionRes = descriptionRes;
             return this;
@@ -64,6 +129,11 @@ public interface UpdatePromptInfo extends Parcelable {
             return context.getString(descriptionRes);
         }
 
+        /**
+         * Sets a string resource to be used as the forced update title.
+         * @param forcedTitleRes The resource ID of the string to use as the title.
+         * @return This {@link com.raizlabs.freshair.UpdatePromptInfo.Builder} for chaining method calls.
+         */
         public Builder setForcedTitleResource(int forcedTitleRes) {
             this.forcedTitleRes = forcedTitleRes;
             return this;
@@ -74,6 +144,11 @@ public interface UpdatePromptInfo extends Parcelable {
             return context.getString(forcedTitleRes);
         }
 
+        /**
+         * Sets a string resource to be used as the forced update description.
+         * @param forcedDescriptionRes The resource ID of the string to use as the description.
+         * @return This {@link com.raizlabs.freshair.UpdatePromptInfo.Builder} for chaining method calls.
+         */
         public Builder setForcedDescriptionResource(int forcedDescriptionRes) {
             this.forcedDescriptionRes = forcedDescriptionRes;
             return this;
@@ -84,6 +159,11 @@ public interface UpdatePromptInfo extends Parcelable {
             return context.getString(disabledTitleRes);
         }
 
+        /**
+         * Sets a string resource to be used as the title when the app is disabled from use.
+         * @param disabledTitleRes The resource ID of the string ot use as the title.
+         * @return This {@link com.raizlabs.freshair.UpdatePromptInfo.Builder} for chaining method calls.
+         */
         public Builder setDisabledTitleResource(int disabledTitleRes) {
             this.disabledTitleRes = disabledTitleRes;
             return this;
@@ -94,6 +174,11 @@ public interface UpdatePromptInfo extends Parcelable {
             return context.getString(disabledDescriptionRes);
         }
 
+        /**
+         * Sets a string resource to be used as the description when the app is disabled from use.
+         * @param disabledDescriptionRes The resource ID of the string to use as the description.
+         * @return This {@link com.raizlabs.freshair.UpdatePromptInfo.Builder} for chaining method calls.
+         */
         public Builder setDisabledDescriptionResource(int disabledDescriptionRes) {
             this.disabledDescriptionRes = disabledDescriptionRes;
             return this;
@@ -104,6 +189,11 @@ public interface UpdatePromptInfo extends Parcelable {
             return context.getString(forcedDescriptionRes);
         }
 
+        /**
+         * Sets a string resource to be used as the label for the button to accept an update.
+         * @param acceptRes The resource ID of the string to use as the label.
+         * @return This {@link com.raizlabs.freshair.UpdatePromptInfo.Builder} for chaining method calls.
+         */
         public Builder setAcceptStringResource(int acceptRes) {
             this.acceptRes = acceptRes;
             return this;
@@ -114,6 +204,11 @@ public interface UpdatePromptInfo extends Parcelable {
             return context.getString(acceptRes);
         }
 
+        /**
+         * Sets a string resource to be used as the label for the button to decline an update.
+         * @param declineRes The resource ID of the string to use as the label.
+         * @return This {@link com.raizlabs.freshair.UpdatePromptInfo.Builder} for chaining method calls.
+         */
         public Builder setDeclineStringResource(int declineRes) {
             this.declineRes = declineRes;
             return this;

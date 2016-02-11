@@ -1,5 +1,8 @@
 package com.raizlabs.freshair;
 
+/**
+ * Constants which represent the different levels of logging.
+ */
 public class LogLevel {
     public static final int VERBOSE = Integer.parseInt("000001", 2);
     public static final int DEBUG = Integer.parseInt("000010", 2);

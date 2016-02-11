@@ -11,10 +11,22 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents an individual release.
+ */
 public class Release implements Parcelable {
 
+    /**
+     * Value for indicating there is no minimum version specified.
+     */
     public static final int MINIMUM_VERSION_NONE = -1;
 
+    /**
+     * Parses a list of {@link Release} from a {@link JSONArray} as specified by the current schema.
+     * @param json The JSON to parse.
+     * @return The list of {@link Release}s that were parsed.
+     * @throws JSONException If there was an error parsing the JSON.
+     */
     public static List<Release> fromJson(JSONArray json) throws JSONException {
         final int releaseCount = json.length();
         List<Release> releases = new ArrayList<>(releaseCount);
@@ -26,6 +38,12 @@ public class Release implements Parcelable {
         return releases;
     }
 
+    /**
+     * Parses an individual {@link Release} from a {@link JSONObject} as specified by the current schema.
+     * @param json The JSON to parse.
+     * @return The {@link Release} that was parsed.
+     * @throws JSONException If there was an error parsing the JSON.
+     */
     public static Release fromJson(JSONObject json) throws JSONException {
         Release release = new Release();
         release.setVersionCode(json.getInt("version"));
@@ -37,18 +55,32 @@ public class Release implements Parcelable {
     private int versionCode;
     private int minimumSystemVersion;
 
+    /**
+     * @return The version code of this release.
+     */
     public int getVersionCode() {
         return versionCode;
     }
 
+    /**
+     * Sets the version code for this release.
+     * @param versionCode The version code to set.
+     */
     public void setVersionCode(int versionCode) {
         this.versionCode = versionCode;
     }
 
+    /**
+     * @return The minimum system version (API Level) supported by this release.
+     */
     public int getMinimumSystemVersion() {
         return minimumSystemVersion;
     }
 
+    /**
+     * Sets the minimum system version (API Level) supported by this release.
+     * @param minimumSystemVersion The minimum supported system version.
+     */
     public void setMinimumSystemVersion(int minimumSystemVersion) {
         this.minimumSystemVersion = minimumSystemVersion;
     }

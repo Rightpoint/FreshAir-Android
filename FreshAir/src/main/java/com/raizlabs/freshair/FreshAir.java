@@ -15,6 +15,9 @@ import android.os.Looper;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
+/**
+ * Central class for the Fresh Air SDK. Most actions are performed through here.
+ */
 public class FreshAir {
 
     private static ForegroundActivityTracker foregroundActivityTracker;
@@ -70,7 +73,14 @@ public class FreshAir {
         FreshAir.onboardingInfo = onboardingInfo;
     }
 
-    public static void showUpdatePrompt(final String url) {
+    /**
+     * Requests updates from the given URL to determine the currently available release information. When
+     * the request finishes, the user is shown update prompts based on the returned info. See
+     * {@link #showUpdatePrompt(ReleaseInfo)} for more details.
+     *
+     * @param url The URL to fetch {@link ReleaseInfo} from.
+     */
+    public static void checkForUpdates(final String url) {
         if (ensureInitialized()) {
             new Thread(new Runnable() {
                 @Override
@@ -256,6 +266,11 @@ public class FreshAir {
         }
     }
 
+    /**
+     * Call to mark the given version update as acknowledged so we don't reprompt the user for this version or any
+     * previous version.
+     * @param versionCode The version code to mark as acknowledged.
+     */
     public static void onUserAcknowledgedVersionUpdate(int versionCode) {
         if (ensureInitialized()) {
             FreshAirLog.v("User acknowledged version update: " + versionCode);
@@ -347,6 +362,17 @@ public class FreshAir {
      */
     public static void setLogLevel(int logLevel) {
         FreshAirLog.setLogLevel(logLevel);
+    }
+
+    /**
+     * @return The app's current version code, or -1 if the SDK hasn't been initialized.
+     */
+    static int getCurrentApplicationVersion() {
+        if (ensureInitialized()) {
+            return currentApplicationVersion;
+        } else {
+            return -1;
+        }
     }
 
     /**

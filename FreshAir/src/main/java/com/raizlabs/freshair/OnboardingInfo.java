@@ -8,17 +8,38 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Interface which defines the information for onboarding in a new version. See
+ * {@link com.raizlabs.freshair.OnboardingInfo.Builder} for easy creation.
+ */
 public interface OnboardingInfo extends Parcelable {
 
+    /**
+     * Gets the version code this info is associated with. This is what is used to determine whether this info has been
+     * shown or not.
+     * @return The version code.
+     */
     int getVersionCode();
+
+    /**
+     * Gets a list of {@link FeatureInfo} that are provided by this version.
+     * @return The new {@link FeatureInfo} for this version.
+     */
     List<FeatureInfo> getFeatures();
 
+    /**
+     * Class which helps to easily construct {@link OnboardingInfo}s.
+     */
     class Builder implements OnboardingInfo {
 
         private int versionCode;
         private List<FeatureInfo> features;
 
+        /**
+         * Constructs a new builder, assuming that the version code is the current app version.
+         */
         public Builder() {
+            setVersionCode(Math.min(FreshAir.getCurrentApplicationVersion(), 0));
             setFeatures(new LinkedList<FeatureInfo>());
         }
 
@@ -27,6 +48,12 @@ public interface OnboardingInfo extends Parcelable {
             return versionCode;
         }
 
+        /**
+         * Sets the version that this information is associated with. Can be handy to override in minor updates
+         * where you would still like to show the previous update onboarding if the user still hasn't seen it.
+         * @param versionCode The version code the info is associated with.
+         * @return This {@link com.raizlabs.freshair.OnboardingInfo.Builder} for chaining method calls.
+         */
         public Builder setVersionCode(int versionCode) {
             this.versionCode = versionCode;
             return this;
@@ -37,16 +64,31 @@ public interface OnboardingInfo extends Parcelable {
             return features;
         }
 
+        /**
+         * Sets the list of features provided by this version.
+         * @param features The list of features provided by this version.
+         * @return This {@link com.raizlabs.freshair.OnboardingInfo.Builder} for chaining method calls.
+         */
         public Builder setFeatures(List<FeatureInfo> features) {
             this.features = features;
             return this;
         }
 
+        /**
+         * Adds the given feature to the list of features provided by this version.
+         * @param feature The feature to add.
+         * @return This {@link com.raizlabs.freshair.OnboardingInfo.Builder} for chaining method calls.
+         */
         public Builder addFeature(FeatureInfo feature) {
             this.features.add(feature);
             return this;
         }
 
+        /**
+         * Adds the given features to the list of features provided by this version.
+         * @param features The features to add.
+         * @return This {@link com.raizlabs.freshair.OnboardingInfo.Builder} for chaining method calls.
+         */
         public Builder addFeatures(Collection<FeatureInfo> features) {
             this.features.addAll(features);
             return this;
