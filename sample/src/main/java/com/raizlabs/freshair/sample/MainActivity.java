@@ -37,8 +37,7 @@ public class MainActivity extends FragmentActivity {
         findViewById(R.id.activity_main_update).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FreshAir.showUpdatePrompt("https://raw.githubusercontent.com/Raizlabs/FreshAir-Android/develop/Schema/release_notes.json");
-//                FreshAir.showUpdatePrompt(50, false);
+                FreshAir.showUpdatePrompt(50, false);
             }
         });
 
