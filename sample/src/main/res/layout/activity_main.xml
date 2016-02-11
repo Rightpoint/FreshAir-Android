@@ -38,6 +38,14 @@
         android:text="Update Prompt"/>
 
     <Button
+        android:id="@+id/activity_main_updateWeb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:text="Update From Web"/>
+
+    <Button
         android:id="@+id/activity_main_forcedUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
