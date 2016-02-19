@@ -9,14 +9,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Interface which defines the information for onboarding in a new version. See
- * {@link com.raizlabs.freshair.OnboardingInfo.Builder} for easy creation.
+ * Interface which defines the information for release notes in a new version. See
+ * {@link ReleaseNotes.Builder} for easy creation.
  */
-public interface OnboardingInfo extends Parcelable {
+public interface ReleaseNotes extends Parcelable {
 
     /**
-     * Gets the version code this info is associated with. This is what is used to determine whether this info has been
-     * shown or not.
+     * Gets the version code these notes are associated with. This is what is used to determine whether this info has
+     * been shown or not.
      * @return The version code.
      */
     int getVersionCode();
@@ -28,9 +28,9 @@ public interface OnboardingInfo extends Parcelable {
     List<FeatureInfo> getFeatures();
 
     /**
-     * Class which helps to easily construct {@link OnboardingInfo}s.
+     * Class which helps to easily construct {@link ReleaseNotes}s.
      */
-    class Builder implements OnboardingInfo {
+    class Builder implements ReleaseNotes {
 
         private int versionCode;
         private List<FeatureInfo> features;
@@ -49,10 +49,10 @@ public interface OnboardingInfo extends Parcelable {
         }
 
         /**
-         * Sets the version that this information is associated with. Can be handy to override in minor updates
-         * where you would still like to show the previous update onboarding if the user still hasn't seen it.
-         * @param versionCode The version code the info is associated with.
-         * @return This {@link com.raizlabs.freshair.OnboardingInfo.Builder} for chaining method calls.
+         * Sets the version that these notes are associated with. Can be handy to override in minor updates
+         * where you would still like to show the previous update release notes if the user still hasn't seen them.
+         * @param versionCode The version code the notes are associated with.
+         * @return This {@link ReleaseNotes.Builder} for chaining method calls.
          */
         public Builder setVersionCode(int versionCode) {
             this.versionCode = versionCode;
@@ -67,7 +67,7 @@ public interface OnboardingInfo extends Parcelable {
         /**
          * Sets the list of features provided by this version.
          * @param features The list of features provided by this version.
-         * @return This {@link com.raizlabs.freshair.OnboardingInfo.Builder} for chaining method calls.
+         * @return This {@link ReleaseNotes.Builder} for chaining method calls.
          */
         public Builder setFeatures(List<FeatureInfo> features) {
             this.features = features;
@@ -77,7 +77,7 @@ public interface OnboardingInfo extends Parcelable {
         /**
          * Adds the given feature to the list of features provided by this version.
          * @param feature The feature to add.
-         * @return This {@link com.raizlabs.freshair.OnboardingInfo.Builder} for chaining method calls.
+         * @return This {@link ReleaseNotes.Builder} for chaining method calls.
          */
         public Builder addFeature(FeatureInfo feature) {
             this.features.add(feature);
@@ -87,7 +87,7 @@ public interface OnboardingInfo extends Parcelable {
         /**
          * Adds the given features to the list of features provided by this version.
          * @param features The features to add.
-         * @return This {@link com.raizlabs.freshair.OnboardingInfo.Builder} for chaining method calls.
+         * @return This {@link ReleaseNotes.Builder} for chaining method calls.
          */
         public Builder addFeatures(Collection<FeatureInfo> features) {
             this.features.addAll(features);

@@ -12,22 +12,21 @@
         android:text="Fresh Air!"
         android:textSize="26dp"/>
 
-
     <Button
-        android:id="@+id/activity_main_onboarding"
+        android:id="@+id/activity_main_release_notes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="24dp"
-        android:text="Onboarding Popup"/>
+        android:text="Release Notes Popup"/>
 
     <Button
-        android:id="@+id/activity_main_onboarding_clear"
+        android:id="@+id/activity_main_release_notes_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
-        android:text="Clear Onboarding Version"/>
+        android:text="Clear Release Notes Version"/>
 
     <Button
         android:id="@+id/activity_main_update"

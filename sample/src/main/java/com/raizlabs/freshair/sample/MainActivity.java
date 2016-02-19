@@ -20,17 +20,17 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.activity_main_onboarding).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.activity_main_release_notes).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FreshAir.showOnboarding(MainActivity.this);
+                FreshAir.showReleaseNotes(MainActivity.this);
             }
         });
 
-        findViewById(R.id.activity_main_onboarding_clear).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.activity_main_release_notes_clear).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FreshAir.clearOnboardingVersion();
+                FreshAir.clearReleaseNotesVersion();
             }
         });
 

@@ -7,7 +7,7 @@ class MainPreferences {
 
     private static final String PREFS_NAME = "FreshAir:Main";
 
-    private static final String KEY_ONBOARDING_PROMPT_VERSION = "LastOnboardingPromptVersionCode";
+    private static final String KEY_RELEASE_NOTES_PROMPT_VERSION = "LastReleaseNotesPromptVersionCode";
     private static final String KEY_UPDATE_PROMPT_VERSION = "LastUpdatePromptVersionCode";
     private static final String KEY_FORCED_UPDATE_VERSION = "ForcedUpdateVersionCode";
     private static final String KEY_APP_DISABLED = "AppIsDisabled";
@@ -18,18 +18,18 @@ class MainPreferences {
         preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
     }
 
-    public int getLastOnboardingPromptVersion() {
-        return preferences.getInt(KEY_ONBOARDING_PROMPT_VERSION, -1);
+    public int getLastReleaseNotesPromptVersion() {
+        return preferences.getInt(KEY_RELEASE_NOTES_PROMPT_VERSION, -1);
     }
 
-    public void setLastOnboardingPromptVersion(int version) {
-        if (version > getLastOnboardingPromptVersion()) {
-            preferences.edit().putInt(KEY_ONBOARDING_PROMPT_VERSION, version).apply();
+    public void setLastReleaseNotesPromptVersion(int version) {
+        if (version > getLastReleaseNotesPromptVersion()) {
+            preferences.edit().putInt(KEY_RELEASE_NOTES_PROMPT_VERSION, version).apply();
         }
     }
 
-    public void clearLastOnboardingPromptVersion() {
-        preferences.edit().remove(KEY_ONBOARDING_PROMPT_VERSION).apply();
+    public void clearLastReleaseNotesPromptVersion() {
+        preferences.edit().remove(KEY_RELEASE_NOTES_PROMPT_VERSION).apply();
     }
 
     public int getLastUpdatePromptVersion() {

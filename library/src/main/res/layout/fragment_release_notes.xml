@@ -6,12 +6,12 @@
               android:layout_height="wrap_content">
 
     <com.raizlabs.freshair.WrapContentHeightViewPager
-        android:id="@+id/fragment_onboarding_viewPager"
+        android:id="@+id/fragment_release_notes_viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <com.raizlabs.freshair.LinePageIndicator
-        android:id="@+id/fragment_onboarding_pageIndicator"
+        android:id="@+id/fragment_release_notes_pageIndicator"
         android:layout_width="match_parent"
         android:layout_height="8dp"
         app:linePageIndicatorMaxLineWidth="16dp"
@@ -20,7 +20,7 @@
         android:layout_marginBottom="8dp"/>
 
     <Button
-        android:id="@+id/fragment_onboarding_done"
+        android:id="@+id/fragment_release_notes_done"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#888888"

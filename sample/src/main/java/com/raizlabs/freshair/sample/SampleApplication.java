@@ -5,7 +5,7 @@ import android.app.Application;
 import com.raizlabs.freshair.FeatureInfo;
 import com.raizlabs.freshair.FreshAir;
 import com.raizlabs.freshair.LogLevel;
-import com.raizlabs.freshair.OnboardingInfo;
+import com.raizlabs.freshair.ReleaseNotes;
 
 public class SampleApplication extends Application {
 
@@ -15,7 +15,7 @@ public class SampleApplication extends Application {
 
         FreshAir.initialize(this);
         FreshAir.setLogLevel(LogLevel.ALL);
-        FreshAir.setOnboardingInfo(new OnboardingInfo.Builder()
+        FreshAir.setReleaseNotes(new ReleaseNotes.Builder()
                 .addFeature(
                         new FeatureInfo.Builder()
                                 .setImageResource(R.mipmap.ic_launcher)
@@ -34,6 +34,7 @@ public class SampleApplication extends Application {
                                 .setTitleResource(R.string.Feature3_Title)
                                 .setDescriptionResource(R.string.Feature3_Description)
                 )
+                        // Sometimes handy for minor updates: see docs
                 .setVersionCode(1));
     }
 }

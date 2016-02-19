@@ -24,7 +24,7 @@ public class FreshAir {
 
     private static int currentApplicationVersion;
     private static UpdatePromptInfo updatePromptInfo = new UpdatePromptInfo.Builder();
-    private static OnboardingInfo onboardingInfo;
+    private static ReleaseNotes releaseNotes;
     private static MainPreferences preferences;
 
     /**
@@ -65,12 +65,12 @@ public class FreshAir {
     }
 
     /**
-     * Sets the {@link OnboardingInfo} to be used by {@link #showOnboarding(FragmentActivity)}.
+     * Sets the {@link ReleaseNotes} to be used by {@link #showReleaseNotes(FragmentActivity)}.
      *
-     * @param onboardingInfo The {@link OnboardingInfo} to display.
+     * @param releaseNotes The {@link ReleaseNotes} to display.
      */
-    public static void setOnboardingInfo(OnboardingInfo onboardingInfo) {
-        FreshAir.onboardingInfo = onboardingInfo;
+    public static void setReleaseNotes(ReleaseNotes releaseNotes) {
+        FreshAir.releaseNotes = releaseNotes;
     }
 
     /**
@@ -319,38 +319,38 @@ public class FreshAir {
     }
 
     /**
-     * Shows the onboarding dialog in the given Activity using the data indicated in {@link #setOnboardingInfo(OnboardingInfo)}.
-     * This will only show once per version indicated in the {@link OnboardingInfo} - if we've already shown the indicated
+     * Shows the release notes dialog in the given Activity using the data indicated in {@link #setReleaseNotes(ReleaseNotes)}.
+     * This will only show once per version indicated in the {@link ReleaseNotes} - if we've already shown the indicated
      * version or higher, this call will do nothing.
      *
      * @param activity The {@link FragmentActivity} to show the dialog in.
      */
-    public static void showOnboarding(FragmentActivity activity) {
+    public static void showReleaseNotes(FragmentActivity activity) {
         if (ensureInitialized()) {
-            final int lastPromptVersion = preferences.getLastOnboardingPromptVersion();
-            final int releaseInfoVersion = onboardingInfo.getVersionCode();
+            final int lastPromptVersion = preferences.getLastReleaseNotesPromptVersion();
+            final int releaseInfoVersion = releaseNotes.getVersionCode();
 
-            FreshAirLog.d(String.format("Last onboarding version displayed: %d Attempting to display release: %d",
+            FreshAirLog.d(String.format("Last release notes version displayed: %d Attempting to display release: %d",
                     lastPromptVersion, releaseInfoVersion));
 
-            if (lastPromptVersion < onboardingInfo.getVersionCode()) {
-                OnboardingFragment onboardingFragment = OnboardingFragment.newInstance(onboardingInfo);
-                onboardingFragment.show(activity.getSupportFragmentManager(), null);
+            if (lastPromptVersion < releaseNotes.getVersionCode()) {
+                ReleaseNotesFragment releaseNotesFragment = ReleaseNotesFragment.newInstance(releaseNotes);
+                releaseNotesFragment.show(activity.getSupportFragmentManager(), null);
 
-                preferences.setLastOnboardingPromptVersion(Utils.getApplicationVersion(activity));
+                preferences.setLastReleaseNotesPromptVersion(Utils.getApplicationVersion(activity));
             }
         }
     }
 
     /**
-     * Clears the history of which onboarding versions have been shown.
+     * Clears the history of which release notes versions have been shown.
      *
-     * @see #showOnboarding(FragmentActivity)
+     * @see #showReleaseNotes(FragmentActivity)
      */
-    public static void clearOnboardingVersion() {
+    public static void clearReleaseNotesVersion() {
         if (ensureInitialized()) {
-            FreshAirLog.v("Clearing onboarding version history");
-            preferences.clearLastOnboardingPromptVersion();
+            FreshAirLog.v("Clearing release notes version history");
+            preferences.clearLastReleaseNotesPromptVersion();
         }
     }
 
