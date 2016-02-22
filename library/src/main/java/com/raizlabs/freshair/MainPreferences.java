@@ -11,6 +11,7 @@ class MainPreferences {
     private static final String KEY_UPDATE_PROMPT_VERSION = "LastUpdatePromptVersionCode";
     private static final String KEY_FORCED_UPDATE_VERSION = "ForcedUpdateVersionCode";
     private static final String KEY_APP_DISABLED = "AppIsDisabled";
+    private static final String KEY_LAST_OS_VERSION = "LastOSVersion";
 
     private SharedPreferences preferences;
 
@@ -68,5 +69,13 @@ class MainPreferences {
 
     public void clearAppDisabled() {
         preferences.edit().remove(KEY_APP_DISABLED).apply();
+    }
+
+    public int getLastOsVersion() {
+        return preferences.getInt(KEY_LAST_OS_VERSION, 0);
+    }
+
+    public void setLastOsVersion(int lastOsVersion) {
+        preferences.edit().putInt(KEY_LAST_OS_VERSION, lastOsVersion).apply();
     }
 }

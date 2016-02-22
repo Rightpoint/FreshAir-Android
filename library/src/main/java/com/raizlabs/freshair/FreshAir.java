@@ -10,6 +10,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.app.FragmentActivity;
@@ -37,6 +38,13 @@ public class FreshAir {
 
         foregroundActivityTracker = new ForegroundActivityTracker(context);
         preferences = new MainPreferences(context);
+
+        final int currentOsVersion = Build.VERSION.SDK_INT;
+        // If the user upgraded, we need to reapply the rules, so clear the disabling of the app
+        if (currentOsVersion > preferences.getLastOsVersion()) {
+            preferences.clearAppDisabled();
+        }
+        preferences.setLastOsVersion(currentOsVersion);
 
         if (preferences.isAppDisabled()) {
             disableApp();
