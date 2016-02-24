@@ -93,16 +93,22 @@ public class FreshAir {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    ReleaseInfoRequest request = new ReleaseInfoRequest(url);
-                    final ReleaseInfo info = request.run();
+                    try {
+                        ReleaseInfoRequest request = new ReleaseInfoRequest(url);
+                        final ReleaseInfo info = request.run();
 
-                    if (info != null) {
-                        new Handler(Looper.getMainLooper()).post(new Runnable() {
-                            @Override
-                            public void run() {
-                                showUpdatePrompt(info);
-                            }
-                        });
+                        if (info != null) {
+                            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    showUpdatePrompt(info);
+                                }
+                            });
+                        } else {
+                            FreshAirLog.e("Error checking for updates from: " + url + ", data was not parsed properly.");
+                        }
+                    } catch (Exception e) {
+                        FreshAirLog.e("Error checking for updates from: " + url, e);
                     }
                 }
             }).start();
