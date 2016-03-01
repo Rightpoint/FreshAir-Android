@@ -38,6 +38,7 @@ class JsonRequest {
         try {
             URL url = new URL(JsonRequest.this.url);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setUseCaches(false);
             connection.connect();
 
             InputStream responseStream = connection.getInputStream();
